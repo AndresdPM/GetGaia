@@ -1499,7 +1499,7 @@ def main(argv):
    parser.add_argument('--plots', type=str2bool, default=True, help='Create sanity plots. Default is True.')
    parser.add_argument('--clean_data', type = str2bool, default = False, help = 'Screen out bad measurements based on Gaia DR2 quality flags. Default is False.')
    parser.add_argument('--do_first_pass', type = str2bool, default = True, help = 'Performs a first selection using maximum likelihood.')
-   parser.add_argument('--membership_prob', type = float, default = 0.5, help = 'Performs a first selection using maximum likelihood.')
+   parser.add_argument('--membership_prob', type = float, default = None, help = 'Performs a first selection using maximum likelihood.')
    parser.add_argument('--prepare_for_clustering', type = float, default = 0, help = 'Preselect sources before the last clustering. If a value is given, only PM compatible with the PMs provided as input within that number plus error will be considered.')
    parser.add_argument('--use_position_prob', type = str2bool, default = False, help = 'Calculate probabilities of a star being a member using Multi Gaussian Expansion.')
    parser.add_argument('--use_parallax_prob', type = str2bool, default = True, help = 'Calculate probabilities of a star being a member using parallax.')
