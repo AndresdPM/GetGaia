@@ -1790,9 +1790,12 @@ def main(argv):
    
    args.pmra_new = stats['pmra_median']
    args.pmdec_new = stats['pmdec_median']
+ 
+   try:
+      ellipse = sky_model(args, data, field = field, fit_pge = False, use_center = False, ellipse_plot = './%s/%s_sky_ellipse_2.pdf'%(args.name, args.name))
+   except:
+      ellipse = pd.read_csv('./%s/%s_ellipse_1.csv'%(args.name, args.name))
    
-   ellipse = sky_model(args, data, field = field, fit_pge = False, use_center = False, ellipse_plot = './%s/%s_sky_ellipse_2.pdf'%(args.name, args.name))
-
    logresults = ' RESULTS '.center(82, '-')+'\n ' \
                +' - A total of %i stars were used.\n'%data.member.sum() \
                +' - Error-weighted mean, mean, and median absolute PM of used stars: \n' \
