@@ -1781,7 +1781,7 @@ def main(argv):
 
 
    try:
-      data_filt, data_voronoi, voronoi_cells, index_sel, index_rej = voronoi_stats_parallel(data[data.member == True], ['x', 'y', 'pmra', 'pmdec'], [['x','y']], ['voronoi_cell'], [min(1, int(np.sqrt(len(data[data.member == True]))))], sigma = args.clipping_prob_pm_voronoi)
+      data_filt, data_voronoi, voronoi_cells, index_sel, index_rej = voronoi_stats_parallel(data[data.member == True], ['x', 'y', 'pmra', 'pmdec'], [['x','y']], ['voronoi_cell'], [max(5, int(np.sqrt(len(data[data.member == True]))))], sigma = args.clipping_prob_pm_voronoi)
       data.loc[data.member == True, 'member'] = data.loc[data.member == True].index.isin(index_sel[0])
    except:
       pass
