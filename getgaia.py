@@ -1724,7 +1724,7 @@ def main(argv):
 
          except:
             # Likelihood calculation
-            systematics = pd.DataFrame(data={'pmra_error': 0.017, 'pmdec_error': 0.017, 'parallax_error': 0.014, 'gmag_error': 0.001, 'bp_rp_error': 0.01}, index =[0])
+            systematics = pd.DataFrame(data={'pmra_error': 0.034, 'pmdec_error': 0.034, 'parallax_error': 0.028, 'gmag_error': 0.002, 'bp_rp_error': 0.02}, index =[0])
             ellipse, probabilities = CalculateProbabilities(args, data.copy(), field.copy(),
                                                    systematics = systematics, probs_filename = "./%s/%s_probabilities.csv"%(args.name, args.name), ellipse_filename="./%s/%s_ellipse_1.csv"%(args.name, args.name))
 
