@@ -1,5 +1,5 @@
 # GetGaia
-GetGaia is a software tool that aids on downloading data from the Gaia archive and select member stars from stellar systems.
+GetGaia is a Python tool that aids on downloading data from the Gaia archive and select member stars from stellar systems.
 
 ## License and Referencing
 This code is released under a BSD 2-clause license.
@@ -21,7 +21,7 @@ that download data from the Gaia archive, screen out select member stars from st
 
 ## Usage
 
-GetGaia can be used in automatic or interactive form. For example, the user can interactively retrieve all the data available in the Sculptor dwarf spheroidal galaxy, and a selection of members with:
+At the moment, GetGaia does not have an installator. Please download the code and execute it locally in your machine. GetGaia can be used in automatic or interactive form. For example, the user can interactively retrieve all the data available in the Sculptor dwarf spheroidal galaxy, and a selection of members with:
 
 $ GetGaia --name "Sculptor dSph"
 
@@ -37,5 +37,4 @@ $ GetGaia --help
 
 ## Requirements
 
-This code makes use of Astropy, Pandas, Numpy, Scipy, Matplotlib, and Sklearn among others. The code will require the installation of the gaiadr3_zeropoint package: https://pypi.org/project/gaiadr3-zeropoint/
-.
+This code makes use of Astropy, Pandas, Numpy, Scipy, Matplotlib, and Sklearn among others. The code will require the installation of the [gaiadr3_zeropoint](https://pypi.org/project/gaiadr3-zeropoint/) package.
