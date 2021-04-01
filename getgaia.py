@@ -10,7 +10,7 @@ import warnings
 
 import numpy as np
 import pandas as pd
-pd.options.mode.chained_assignment = None  # default='warn'
+pd.options.mode.chained_assignment = None
 
 import matplotlib.pyplot as plt
 from matplotlib.widgets import LassoSelector
@@ -1215,34 +1215,34 @@ def get_object_properties(args):
          if any((args.min_pmra == None, args.max_pmra == None)):
             if (object_table['PMRA'].mask == False):
                args.pmra = float(object_table['PMRA'])
-               args.max_pmra = float(object_table['PMRA']) + 3
-               args.min_pmra = float(object_table['PMRA']) - 3
+               args.max_pmra = float(object_table['PMRA']) + 5
+               args.min_pmra = float(object_table['PMRA']) - 5
             else:
                if not args.silent:
                   try:
-                     args.max_pmra = float(input('Max PMRA not defined, please enter pmra in mas/yr (Press enter to adopt the default value of 3 m.a.s./yr): '))
+                     args.max_pmra = float(input('Max PMRA not defined, please enter pmra in mas/yr (Press enter to adopt the default value of 5 m.a.s./yr): '))
                   except:
-                     args.max_pmra = 3.0
+                     args.max_pmra = 5.0
                   try:
-                     args.min_pmra = float(input('Min PMRA not defined, please enter pmra in mas/yr (Press enter to adopt the default value of  -3 m.a.s./yr): '))
+                     args.min_pmra = float(input('Min PMRA not defined, please enter pmra in mas/yr (Press enter to adopt the default value of  -5 m.a.s./yr): '))
                   except:
-                     args.min_pmra = -3.0
+                     args.min_pmra = -5.0
 
          if any((args.min_pmdec == None, args.max_pmdec == None)):
             if (object_table['PMDEC'].mask == False):
                args.pmdec = float(object_table['PMDEC'])
-               args.max_pmdec = float(object_table['PMDEC']) + 2
-               args.min_pmdec = float(object_table['PMDEC']) - 2
+               args.max_pmdec = float(object_table['PMDEC']) + 5
+               args.min_pmdec = float(object_table['PMDEC']) - 5
             else:
                if not args.silent:
                   try:
-                     args.max_pmdec = float(input('Max PMDEC not defined, please enter pmdec in mas/yr (Press enter to adopt the default value of 3 m.a.s./yr): '))
+                     args.max_pmdec = float(input('Max PMDEC not defined, please enter pmdec in mas/yr (Press enter to adopt the default value of 5 m.a.s./yr): '))
                   except:
-                     args.max_pmdec = 3.0
+                     args.max_pmdec = 5.0
                   try:
-                     args.min_pmdec = float(input('Min PMDEC not defined, please enter pmdec in mas/yr (Press enter to adopt the default value of  -3 m.a.s./yr): '))
+                     args.min_pmdec = float(input('Min PMDEC not defined, please enter pmdec in mas/yr (Press enter to adopt the default value of  -5 m.a.s./yr): '))
                   except:
-                     args.min_pmdec = -3.0
+                     args.min_pmdec = -5.0
 
          if (args.min_parallax is None) and not args.silent:
             try:
@@ -1288,25 +1288,20 @@ def get_object_properties(args):
                except:
                   args.search_width = 0.5
 
-   #if args.pmdec is None:
-      #args.pmdec = 0.0
-   #if args.pmra is None:
-      #args.pmra = 0.0
-
    if args.max_pmra is None:
-      args.max_pmra = args.pmra+2.5
+      args.max_pmra = args.pmra+5
    if args.min_pmra is None:
-      args.min_pmra = args.pmra-2.5
+      args.min_pmra = args.pmra-5
 
    if args.max_pmdec is None:
-      args.max_pmdec = args.pmdec+2.5
+      args.max_pmdec = args.pmdec+5
    if args.min_pmdec is None:
-      args.min_pmdec = args.pmdec-2.5
+      args.min_pmdec = args.pmdec-5
 
    if args.min_parallax is None:
-      args.min_parallax = -2.5
+      args.min_parallax = -2.0
    if args.max_parallax is None:
-      args.max_parallax = 1.5
+      args.max_parallax = 1.0
    if args.parallax is None:
       args.parallax = 0.
 
@@ -1606,11 +1601,10 @@ def main(argv):
    parser.add_argument('--use_members', type=str2bool, default=True, help='Whether to use only member stars for the epochs alignment or to use all available stars.')
    parser.add_argument('--gaia_user', type=str, default = None, help='Gaia username. Useful for automatization of the script.')
    parser.add_argument('--gaia_paswd', type=str, default = None, help='Gaia password. Useful for automatization of the script.')
-   parser.add_argument('--ra', type=float, default = None, help='Central R.A.')
-   parser.add_argument('--dec', type=float, default = None, help='Central Dec.')
+   parser.add_argument('--ra', type=float, default = None, help='Central R.A. of the object.')
+   parser.add_argument('--dec', type=float, default = None, help='Central Dec. of the object.')
    parser.add_argument('--distance', type=float, default = None, help='Distance to the object.')
    parser.add_argument('--radial_velocity', type=float, default = None, help='Radial_velocity to the object.')
-
    parser.add_argument('--search_type', type=str, default = 'cone', help='Shape of the area to search. Options are "box", "cone" or "anulus". The "box" size is controlled by the "search_width" and "search_height" parameters. The "cone" radius is controlled by the "search_radius" parameter.')
    parser.add_argument('--search_width', type=float, default = None, help='Width for the cone search in degrees.')
    parser.add_argument('--search_height', type=float, default = None, help='Height for the cone search in degrees.')
@@ -1709,13 +1703,21 @@ def main(argv):
    
    # We fix some of the variables using the codes published with EDR3
    zpt.load_tables()
-   table['corrected_parallax'] = table['parallax'] - zpt.get_zpt(table['gmag'], table['nu_eff_used_in_astrometry'], table['pseudocolour'], table['ecl_lat'], table['astrometric_params_solved'])
-   table['corrected_gmag'], table['corrected_phot_g_mean_flux'] = correct_gband(table['bp_rp'], table['astrometric_params_solved'], table['gmag'], table['phot_g_mean_flux'])
+   corrected_parallax = table['parallax'] - zpt.get_zpt(table['gmag'], table['nu_eff_used_in_astrometry'], table['pseudocolour'], table['ecl_lat'], table['astrometric_params_solved'])
+   corrected_gmag, corrected_phot_g_mean_flux = correct_gband(table['bp_rp'], table['astrometric_params_solved'], table['gmag'], table['phot_g_mean_flux'])
+   corrected_flux_excess_factor = correct_flux_excess_factor(table['bp_rp'], table['phot_bp_rp_excess_factor'])
+   
    table['corrected_flux_excess_factor'] = correct_flux_excess_factor(table['bp_rp'], table['phot_bp_rp_excess_factor'])
 
    clean_label = pre_clean_data(table['gmag'], table['corrected_flux_excess_factor'], table['ruwe'], table['ipd_gof_harmonic_amplitude'], table['visibility_periods_used'], table['astrometric_excess_noise_sig'], table['astrometric_params_solved'], sigma_flux_excess_factor = args.sigma_flux_excess_factor, use_5p = True)
 
    table['clean_label'] = clean_label
+
+   table['original_parallax'] = table['parallax'].values
+   table['parallax'] = corrected_parallax
+   
+   table['original_gmag'] = table['gmag'].values
+   table['gmag'] = corrected_gmag
 
    table = get_real_error(table)
    table = select_conditions(args, table)
@@ -1809,9 +1811,6 @@ def main(argv):
          print('Voronoi failed!')
          pass
 
-   ############
-   #NO ROTATION
-   ############
    stats = statistics(data.loc[data.member, ['pmra', 'pmdec', 'pmra_error', 'pmdec_error']])
    
    args.pmra_new = stats['pmra_median']
@@ -1870,9 +1869,6 @@ def main(argv):
    f.close()
 
    print('\nDone!.\n')
-
-   ############
-
 
 if __name__ == '__main__':
     main(sys.argv[1:])
