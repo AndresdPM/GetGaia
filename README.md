@@ -23,17 +23,17 @@ that download data from the Gaia archive, screen out select member stars from st
 
 At the moment, GetGaia does not have an installator. Please download the code and execute it locally in your machine. GetGaia can be used in automatic or interactive form. For example, the user can interactively retrieve all the data available in the Sculptor dwarf spheroidal galaxy, and a selection of members with:
 
-$ GetGaia --name "Sculptor dSph"
+$ ./GetGaia --name "Sculptor dSph"
 
 Or in the NGC5053 globular cluster:
 
-$ GetGaia --name "NGC5053"
+$ ./GetGaia --name "NGC5053"
 
-Adding the option "--silent True" forces GetGaia to adopt all the default parameters (not recommended).
+Adding the option "--silent True" forces GetGaia to adopt all the default parameters and run in automatic mode.
 
 Please read the help to know more about GetGaia options.
 
-$ GetGaia --help
+$ ./GetGaia --help
 
 ## Requirements
 
