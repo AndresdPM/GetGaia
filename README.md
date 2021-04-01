@@ -10,12 +10,12 @@ If you find this code useful for your research, please mention it in your acknow
 
 GetGaia includes lots of useful features:
 
-*Search of objects based on names.
-*Automatic screening out of poorly measured stars.
-*Interactive selection of members.
-*Voronoi tesellation with sigma clipping rejection of contaminants.
-*Statistics about the systemic proper motions of the object.
-*Automatic generation of plots.
+* Search of objects based on names.
+* Automatic screening out of poorly measured stars.
+* Interactive selection of members.
+* Voronoi tesellation with sigma clipping rejection of contaminants.
+* Statistics about the systemic proper motions of the object.
+* Automatic generation of plots.
 
 that download data from the Gaia archive, screen out select member stars from stellar systems. It alos  to download Gaia data and select members stars, and screening out poorly measured stars through a series of nested criteria.
 
