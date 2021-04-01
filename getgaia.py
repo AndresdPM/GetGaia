@@ -20,7 +20,6 @@ from sklearn import mixture
 from astropy import units as u, coordinates as c
 from scipy import stats
 from math import log10, floor
-import gala.coordinates as gc
 
 import random
 from astropy.stats import sigma_clip, mad_std
@@ -29,7 +28,6 @@ from astropy.utils.exceptions import AstropyWarning
 warnings.simplefilter('ignore', category=AstropyWarning)
 
 from zero_point import zpt
-
 
 def add_inner_title(ax, title, loc, size=None, color=None, rotation=None, **kwargs):
     from matplotlib.offsetbox import AnchoredText
