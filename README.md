@@ -17,8 +17,6 @@ GetGaia includes lots of useful features:
 * Statistics about the systemic proper motions of the object.
 * Automatic generation of plots.
 
-that download data from the Gaia archive, screen out select member stars from stellar systems. It alos  to download Gaia data and select members stars, and screening out poorly measured stars through a series of nested criteria.
-
 ## Usage
 
 At the moment, GetGaia does not have an installator. Please download the code and execute it locally in your machine. GetGaia can be used in automatic or interactive form. For example, the user can interactively retrieve all the data available in the Sculptor dwarf spheroidal galaxy, and a selection of members with:
