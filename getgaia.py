@@ -1286,6 +1286,11 @@ def get_object_properties(args):
                except:
                   args.search_width = 0.5
 
+   if args.pmra is None:
+      args.pmra = 0
+   if args.pmdec is None:
+      args.pmdec = 0
+
    if args.max_pmra is None:
       args.max_pmra = args.pmra+5
    if args.min_pmra is None:
